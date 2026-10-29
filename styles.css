@@ -48,42 +48,48 @@ body {
 }
 
 .plate[data-scene="orbit"] {
-  background-image: url("public/brand/hero-sky.webp");
-  background-position: center top;
+  background-image: url("public/brand/field-ripple.jpg");
+  background-position: center 42%;
   background-size: cover;
   opacity: 1;
 }
 
 .plate[data-scene="ring"] {
-  background-image: url("public/brand/scene-ring.jpg");
-  background-position: 100% 42%;
+  background-image: url("public/brand/field-silk.jpg");
+  background-position: center;
+  background-size: cover;
 }
 
 .plate[data-scene="horizon"] {
-  background-image: url("public/brand/scene-horizon.jpg");
-  background-position: 100% 36%;
+  background-image: url("public/brand/field-fold.jpg");
+  background-position: left center;
+  background-size: cover;
 }
 
 .plate[data-scene="nebula"] {
-  background-image: url("public/brand/scene-nebula.jpg");
-  background-position: 92% center;
+  background-image: url("public/brand/field-wave.jpg");
+  background-position: center;
+  background-size: cover;
 }
 
 .plate[data-scene="globe"] {
-  background-image: url("public/brand/scene-globe.jpg");
-  background-position: 100% center;
+  background-image: url("public/brand/field-silk.jpg");
+  background-position: right center;
+  background-size: cover;
 }
 
 .plate[data-scene="coin"] {
-  background-image: url("public/brand/scene-coin.jpg");
-  background-position: 96% center;
+  background-image: url("public/brand/field-fold.jpg");
+  background-position: right center;
+  background-size: cover;
 }
 
 .atmosphere-veil {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(5, 7, 12, 0.78) 0%, rgba(5, 7, 12, 0.5) 32%, rgba(5, 7, 12, 0.22) 58%, rgba(5, 7, 12, 0.08) 100%);
+    linear-gradient(180deg, rgba(5, 7, 12, 0.05) 0%, rgba(5, 7, 12, 0) 32%, rgba(5, 7, 12, 0.55) 68%, rgba(5, 7, 12, 0.82) 100%),
+    linear-gradient(90deg, rgba(5, 7, 12, 0.45) 0%, rgba(5, 7, 12, 0.16) 42%, rgba(5, 7, 12, 0.04) 100%);
 }
 
 .nav,
@@ -814,7 +820,7 @@ h2 {
   .hero { min-height: 0; padding-top: 2.5rem; }
 
   .atmosphere-veil {
-    background: linear-gradient(180deg, rgba(5, 7, 12, 0.62) 0%, rgba(5, 7, 12, 0.74) 100%);
+    background: linear-gradient(180deg, rgba(5, 7, 12, 0.2) 0%, rgba(5, 7, 12, 0.35) 46%, rgba(5, 7, 12, 0.72) 100%);
   }
 
   h1 { max-width: none; }
