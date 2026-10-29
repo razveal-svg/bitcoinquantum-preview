@@ -48,8 +48,8 @@ body {
 }
 
 .plate[data-scene="orbit"] {
-  background-image: url("public/brand/orbit.jpg");
-  background-position: center;
+  background-image: url("public/brand/hero-sky.webp");
+  background-position: center top;
   background-size: cover;
   opacity: 1;
 }
@@ -83,7 +83,7 @@ body {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(5, 7, 12, 0.9) 0%, rgba(5, 7, 12, 0.74) 24%, rgba(5, 7, 12, 0.28) 46%, rgba(5, 7, 12, 0.08) 68%, rgba(5, 7, 12, 0.2) 100%);
+    linear-gradient(90deg, rgba(5, 7, 12, 0.78) 0%, rgba(5, 7, 12, 0.5) 32%, rgba(5, 7, 12, 0.22) 58%, rgba(5, 7, 12, 0.08) 100%);
 }
 
 .nav,
@@ -146,8 +146,10 @@ a { color: inherit; }
   align-items: center;
   gap: 1.35rem;
   margin-left: auto;
-  font-size: 0.95rem;
-  letter-spacing: 0.01em;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .links a { text-decoration: none; }
@@ -170,38 +172,151 @@ a { color: inherit; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(180deg, var(--sky), var(--blue));
-  color: white;
+  gap: 0.35rem;
+  background: #35a4ea;
+  color: #041018;
   text-decoration: none;
   border: 0;
-  border-radius: 999px;
-  padding: 0.72rem 1.15rem;
+  border-radius: 0;
+  padding: 0.55rem 0.9rem 0.55rem 0.65rem;
   font: inherit;
-  font-size: 0.95rem;
+  font-size: 0.72rem;
   font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   cursor: pointer;
+}
+
+.chev {
+  width: 13px;
+  height: 13px;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13 13'><path d='M5.1 9.9 8.5 6.5 5.1 3.1' fill='none' stroke='black' stroke-width='1.4' stroke-linecap='square'/></svg>") center / contain no-repeat;
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13 13'><path d='M5.1 9.9 8.5 6.5 5.1 3.1' fill='none' stroke='black' stroke-width='1.4' stroke-linecap='square'/></svg>") center / contain no-repeat;
 }
 
 .button { transition: filter 0.2s ease, transform 0.2s ease; }
 .button:hover { filter: brightness(1.08); transform: translateY(-1px); }
 
 .button.ghost {
-  background: transparent;
+  background: rgba(255, 255, 255, 0.14);
   color: var(--ink);
-  box-shadow: inset 0 0 0 1px var(--line);
+  box-shadow: none;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
 }
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(18rem, 0.9fr);
-  gap: 1.75rem 3rem;
-  align-items: center;
-  align-content: center;
+  grid-template-columns: minmax(0, 1.15fr) minmax(16rem, 0.85fr);
+  gap: 1.5rem 2.5rem;
+  align-items: end;
+  align-content: end;
   width: min(var(--measure), calc(100% - 3rem));
   margin: 0 auto;
-  padding: 2rem 0 1.5rem;
+  padding: 2rem 0 1.25rem;
   min-height: calc(100svh - var(--nav));
 }
+.hero-side .lead { margin-top: 0; }
+.rule,
+.status { grid-column: 1 / -1; }
+
+.rule {
+  display: flex;
+  align-items: center;
+  margin: 0.4rem 0 0;
+}
+.rule::before,
+.rule::after {
+  content: "";
+  width: 4px;
+  height: 4px;
+  background: #35a4ea;
+  flex: none;
+}
+.rule span {
+  flex: 1;
+  height: 1px;
+  margin: 0 2px;
+  background: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.55) 0 3px, transparent 3px 6px);
+}
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 1rem 2.5rem;
+  align-items: end;
+}
+.split > p { margin: 0; color: var(--muted); }
+
+.sheet {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 2.5rem;
+  margin-top: 0.4rem;
+}
+.sheet div {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: baseline;
+  gap: 1.15rem;
+  padding: 0.85rem 0;
+  border-top: 1px dashed rgba(255, 255, 255, 0.28);
+}
+.sheet dt {
+  color: #35a4ea;
+  font-size: clamp(1.35rem, 1.7vw, 1.75rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+}
+.sheet dd { margin: 0; color: var(--muted); font-size: 1.05rem; }
+
+.dots {
+  height: 92px;
+  margin-top: 0.5rem;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.75) 1px, transparent 1.6px) 0 0 / 46px 46px;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+
+.band.section {
+  width: min(76rem, calc(100% - 2rem));
+  margin-top: 0.5rem;
+  padding: 1.6rem 1.75rem 1.35rem;
+  color: #071018;
+  background: linear-gradient(180deg, #d5e7f8 0%, #f5f9fd 32%, #ffffff 100%);
+  border-radius: 1.6rem 1.6rem 0 0;
+}
+.band h2,
+.band h3 { color: #071018; }
+.band .split > p,
+.band .change p { color: rgba(7, 16, 24, 0.68); }
+.band .eyebrow,
+.band .kicker,
+.band .spec { color: #2261f6; }
+.band .rule::before,
+.band .rule::after { background: #2261f6; }
+.band .rule span {
+  background: repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.38) 0 3px, transparent 3px 6px);
+}
+.band .change {
+  background: transparent;
+  border: 0;
+  gap: 0 2rem;
+}
+.band .change article,
+.band .change .to {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 132px;
+  gap: 0.75rem;
+  align-items: center;
+  background: transparent;
+  padding: 1.15rem 0 0.2rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+.band .change article::before { display: none; }
+.band .change img { width: 132px; height: auto; }
 
 .eyebrow {
   margin: 0 0 0.9rem;
@@ -239,7 +354,8 @@ h1 {
   margin-top: 1.75rem;
 }
 
-.hero-copy > * {
+.hero-copy > *,
+.hero-side {
   opacity: 0;
   transform: translateY(14px);
   animation: rise 0.7s ease forwards;
@@ -612,14 +728,20 @@ h2 {
   .links.open { display: flex; }
 
   .hero,
+  .split,
   .change,
   .facts,
+  .sheet,
   .steps,
   .status,
   .capture,
   .footer {
     grid-template-columns: 1fr;
   }
+
+  .band .change article,
+  .band .change .to { grid-template-columns: 1fr; }
+  .band .change img { width: 112px; }
 
   .hero { min-height: 0; padding-top: 2.5rem; }
 
@@ -649,11 +771,13 @@ h2 {
   .plate[data-scene="orbit"] { opacity: 1; }
 
   .hero-stage,
-  .hero-copy > * {
+  .hero-copy > *,
+  .hero-side {
     animation: none;
   }
 
-  .hero-copy > * {
+  .hero-copy > *,
+  .hero-side {
     opacity: 1;
     transform: none;
   }
