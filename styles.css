@@ -832,6 +832,136 @@ h2 {
   .status div:first-child { border-top: 0; }
 }
 
+.aisle {
+  position: relative;
+  z-index: 1;
+  height: 340vh;
+  background: #e6eef6;
+}
+
+.aisle-sticky {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+  background: #e6eef6;
+}
+
+.aisle-view {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.aisle-rail {
+  position: absolute;
+  left: max(1.15rem, calc((100% - 72rem) / 2));
+  bottom: 11vh;
+  width: 2px;
+  height: 6.5rem;
+  background: rgba(7, 16, 24, 0.16);
+  z-index: 2;
+}
+
+.aisle-rail span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #2261f6;
+  transform-origin: top center;
+  transform: scaleY(0.08);
+}
+
+.aisle-copy {
+  position: absolute;
+  left: max(2.1rem, calc((100% - 72rem) / 2 + 1rem));
+  bottom: 9vh;
+  width: min(26rem, calc(100% - 3.5rem));
+  min-height: 11rem;
+  z-index: 2;
+  color: #071018;
+}
+
+.aisle-copy::before {
+  content: "";
+  position: absolute;
+  inset: -1.2rem -2.5rem -0.8rem -1.4rem;
+  background: linear-gradient(90deg, rgba(230, 238, 246, 0.92), rgba(230, 238, 246, 0.15));
+  z-index: -1;
+  pointer-events: none;
+}
+
+.aisle-beat {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+}
+
+.aisle-beat h2 {
+  margin: 0.35rem 0 0.55rem;
+  max-width: 16ch;
+  color: #071018;
+  font-size: clamp(1.7rem, 3vw, 2.45rem);
+  line-height: 1.12;
+}
+
+.aisle-kicker {
+  margin: 0;
+  color: #2261f6;
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.aisle-beat p:last-child {
+  margin: 0;
+  max-width: 38ch;
+  color: rgba(7, 16, 24, 0.86);
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.aisle[data-static] { height: auto; }
+
+.aisle[data-static] .aisle-sticky {
+  position: relative;
+  height: auto;
+}
+
+.aisle[data-static] .aisle-view {
+  position: relative;
+  height: 68vh;
+}
+
+.aisle[data-static] .aisle-copy {
+  position: relative;
+  left: auto;
+  bottom: auto;
+  width: min(40rem, calc(100% - 3rem));
+  margin: 0 auto;
+  padding: 1.5rem 0 2rem;
+}
+
+.aisle[data-static] .aisle-beat {
+  position: relative;
+  opacity: 1;
+  margin: 0 0 1.4rem;
+}
+
+.aisle[data-static] .aisle-rail { display: none; }
+
+@media (max-width: 720px) {
+  .aisle { height: 280vh; }
+  .aisle-copy { left: 1.4rem; width: min(22rem, calc(100% - 2.2rem)); bottom: 4.5rem; }
+  .aisle-rail { left: 0.7rem; bottom: 5rem; }
+}
+
 @media (max-width: 640px) {
   .row { flex-direction: column; }
   .row .button { width: 100%; }

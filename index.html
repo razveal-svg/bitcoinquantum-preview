@@ -59,6 +59,35 @@
       </dl>
     </section>
 
+    <section class="aisle" id="aisle" aria-label="A walk through the racks">
+      <div class="aisle-sticky">
+        <canvas class="aisle-view" aria-hidden="true"></canvas>
+        <div class="aisle-rail" aria-hidden="true"><span></span></div>
+        <div class="aisle-copy">
+          <article class="aisle-beat">
+            <p class="aisle-kicker">01 · Address</p>
+            <h2>The key stays off the chain.</h2>
+            <p>Pay-to-Merkle-Root commits the address to a Merkle root. The public key is shown when the coin is spent, not when it is received.</p>
+          </article>
+          <article class="aisle-beat">
+            <p class="aisle-kicker">02 · Signature</p>
+            <h2>The spend is Dilithium 2.</h2>
+            <p>ML-DSA-44, NIST category 2, the collision class of SHA-256. A signature is 2,420 bytes. A public key is 1,312. Mainnet requires it from the first block.</p>
+          </article>
+          <article class="aisle-beat">
+            <p class="aisle-kicker">03 · Critical mass</p>
+            <h2>Our Satoshi can still sign.</h2>
+            <p>Bitcoin already carries a lost supply, widely put near 10 percent, and no one can move it onto a newer signature. The founder here is a company. Those coins can move.</p>
+          </article>
+          <article class="aisle-beat">
+            <p class="aisle-kicker">04 · What stayed</p>
+            <h2>The machines stay on SHA-256.</h2>
+            <p>Existing ASICs still work. The chain is separate. Bitcoin does not move onto it, and there is nothing to buy ahead of launch.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="section band reveal" id="upgrades" data-scene="ring">
       <div class="rule" aria-hidden="true"><span></span></div>
       <div class="split">
@@ -253,5 +282,6 @@
 
   <script src="site.js"></script>
   <script src="figures.js"></script>
+  <script type="module" src="aisle.js"></script>
 </body>
 </html>
