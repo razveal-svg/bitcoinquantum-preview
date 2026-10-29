@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>P2MR and Dilithium 2, from block 1 | Bitcoin Quantum</title>
+  <meta name="description" content="Bitcoin Quantum mainnet launches on Pay-to-Merkle-Root and Dilithium 2 (ML-DSA-44) from the first block.">
+  <link rel="icon" href="public/brand/icon-blue-hero.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="atmosphere" aria-hidden="true">
+    <div class="atmosphere-photo"></div>
+    <div class="atmosphere-veil"></div>
+  </div>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav">
+    <a class="brand" href="#top">
+      <img src="public/brand/wordmark.png" alt="Bitcoin Quantum" width="1600" height="230">
+    </a>
+    <button class="menu" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav id="site-nav" class="links" aria-label="Primary">
+      <a href="#upgrades">Upgrades</a>
+      <a href="#level">Why this level</a>
+      <a href="#mass">Critical mass</a>
+      <a href="#bitcoin">What stayed</a>
+      <a class="button" href="#list">Mainnet list</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <p class="eyebrow">Mainnet · pre-launch</p>
+        <h1>Two upgrades to Bitcoin, from block 1.</h1>
+        <p class="lead">Pay-to-Merkle-Root keeps the public key off the chain until a coin is spent. Dilithium 2, ML-DSA-44, is the signature on that spend. Mainnet applies both from the genesis block.</p>
+        <div class="actions">
+          <a class="button" href="#upgrades">The two upgrades</a>
+          <a class="button ghost" href="#level">Why this level</a>
+        </div>
+      </div>
+      <div class="hero-stage">
+        <div class="hero-mark">
+          <img class="mark" src="public/brand/hero-kit.jpg" alt="Glass Bitcoin mark with an orbital ring, from the Bitcoin Quantum brand kit">
+        </div>
+      </div>
+      <dl class="status" aria-label="Mainnet specification">
+        <div><dt>Mainnet</dt><dd>Rule set. Chain not live.</dd></div>
+        <div><dt>Genesis</dt><dd>26 February 2026 remine</dd></div>
+        <div><dt>Address</dt><dd>P2MR from block 1</dd></div>
+        <div><dt>Signature</dt><dd>Dilithium 2 · ML-DSA-44</dd></div>
+      </dl>
+    </section>
+
+    <section class="section reveal" id="upgrades">
+      <div class="section-head">
+        <p class="eyebrow">01 · The upgrades</p>
+        <h2>P2MR, and Dilithium 2.</h2>
+        <p>These are the changes that matter. The public key stays off the chain while a coin rests. The spend uses a NIST lattice signature, Dilithium 2, the parameter set also called ML-DSA-44.</p>
+      </div>
+      <div class="change">
+        <article class="to">
+          <p class="kicker">Address</p>
+          <h3>P2MR</h3>
+          <p>BIP-360 Pay-to-Merkle-Root. The address commits to a Merkle root. The public key is revealed when the coin is spent. Taproot publishes that key when the coin is received.</p>
+          <p class="spec">BIP-360 · script path · height 1</p>
+        </article>
+        <article class="to">
+          <p class="kicker">Signature</p>
+          <h3>Dilithium 2</h3>
+          <p>CRYSTALS-Dilithium, NIST FIPS 204, parameter set ML-DSA-44. A signature is 2,420 bytes. A public key is 1,312. This is the signature that replaces ECDSA on a mainnet spend.</p>
+          <p class="spec">ML-DSA-44 · NIST category 2 · height 1</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section reveal" id="level">
+      <div class="section-head">
+        <p class="eyebrow">02 · Why this level</p>
+        <h2>Enough security for the chain that already exists.</h2>
+        <p>Dilithium 2 is NIST security category 2, the class of a SHA-256 collision. Heavier parameters buy a margin this chain’s own proof of work does not have, and they spend the bytes the block was opened up to carry.</p>
+      </div>
+      <dl class="facts">
+        <div>
+          <dt>SHA-256</dt>
+          <dd>Proof of work is still SHA-256. A signature above that category does not make the ledger harder to rewrite.</dd>
+        </div>
+        <div>
+          <dt>The spend</dt>
+          <dd>A quantum computer needs the public key. P2MR shows that key at the moment of spend, so the signature covers the spend, not years of an exposed address.</dd>
+        </div>
+        <div>
+          <dt>The bytes</dt>
+          <dd>Dilithium 2 is already about 2,420 bytes, against about 71 for ECDSA. Dilithium 5, ML-DSA-87, is a larger signature for category 5. The 8 MB block and the one-minute target exist so Dilithium 2 fits.</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="section reveal" id="mass">
+      <div class="section-head">
+        <p class="eyebrow">03 · Critical mass</p>
+        <h2>Our Satoshi is alive.</h2>
+        <p>A new signature only helps coins someone can still move. Bitcoin already carries a lost supply, widely put near 10 percent, and Satoshi’s coins are in it. No one can sign for that stash, so it cannot follow a newer scheme. The migration leaves the mass behind.</p>
+      </div>
+      <div class="change">
+        <article>
+          <p class="kicker">Bitcoin</p>
+          <h3>A silent stash</h3>
+          <p>The founder coins have no living signer. When the network has to move coins onto the latest security, that supply stays where it is.</p>
+        </article>
+        <article class="to">
+          <p class="kicker">Bitcoin Quantum</p>
+          <h3>A company that can sign</h3>
+          <p>The founder is a company. It is alive, it carries a fiduciary duty, and the shareholder base is on the public record. When the signature standard changes, those coins can move. The chain keeps a critical mass on the latest security.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section reveal" id="bitcoin">
+      <div class="section-head">
+        <p class="eyebrow">04 · What stayed Bitcoin</p>
+        <h2>Same coins. Same machines.</h2>
+        <p>Miners keep SHA-256. Holders keep a 21 million cap and a four-year halving. The chain is separate: bitcoin does not move onto it, and there is nothing to buy ahead of launch.</p>
+      </div>
+      <dl class="facts">
+        <div><dt>21 million</dt><dd>Supply cap, unchanged.</dd></div>
+        <div><dt>SHA-256</dt><dd>Existing ASICs still work.</dd></div>
+        <div><dt>1 minute</dt><dd>Target time between blocks.</dd></div>
+        <div><dt>8 MB</dt><dd>Block limit, sized for the larger signatures.</dd></div>
+        <div><dt>5 BTQ</dt><dd>Starting subsidy. Halving every 2,100,000 blocks.</dd></div>
+        <div><dt>UTXO</dt><dd>Script and the halving curve stay.</dd></div>
+      </dl>
+    </section>
+
+    <section class="section reveal" id="guides">
+      <div class="section-head">
+        <p class="eyebrow">05 · Guides</p>
+        <h2>The argument, in five pieces.</h2>
+        <p>The signature, the block, and the address. Each one is a short note you can read on its own.</p>
+      </div>
+      <ol class="guides">
+        <li>
+          <a href="https://bitcoinquantum.com/guides/quantum-secure-bitcoin/signature-migration">
+            <span>01</span>
+            <strong>From ECDSA to Dilithium</strong>
+            <em>What the signature change requires: opcodes, size, wallets, and running both schemes.</em>
+          </a>
+        </li>
+        <li>
+          <a href="https://bitcoinquantum.com/guides/quantum-secure-bitcoin/block-size-tradeoffs">
+            <span>02</span>
+            <strong>The 20× problem</strong>
+            <em>Why the signatures need a larger block, and what that does to the rest of the parameters.</em>
+          </a>
+        </li>
+        <li>
+          <a href="https://bitcoinquantum.com/guides/quantum-secure-bitcoin/taproot-quantum-vulnerability">
+            <span>03</span>
+            <strong>Why Taproot is quantum-vulnerable</strong>
+            <em>A quantum-resistant script inside a key path is not protection. P2MR removes the key path.</em>
+          </a>
+        </li>
+        <li>
+          <a href="https://bitcoinquantum.com/guides/quantum-secure-bitcoin/address-formats">
+            <span>04</span>
+            <strong>Quantum-safe addresses</strong>
+            <em>The public key is 1,312 bytes. The address commits to a 32-byte Merkle root instead.</em>
+          </a>
+        </li>
+        <li>
+          <a href="https://bitcoinquantum.com/guides/quantum-secure-bitcoin/mining-and-bootstrapping">
+            <span>05</span>
+            <strong>Mining a quantum-resistant network</strong>
+            <em>SHA-256 is unchanged. Paying miners, and starting the chain, are the hard parts.</em>
+          </a>
+        </li>
+      </ol>
+      <p class="note"><a href="https://docs.bitcoinquantum.com/btq-empirical-behavior-whitepaper.pdf">Mining parameters (PDF)</a> · <a href="https://bitcoinquantum.com/protocol">Protocol</a> · <a href="https://bitcoinquantum.com/faq">FAQ</a></p>
+    </section>
+
+    <section class="capture reveal" id="list">
+      <div>
+        <p class="eyebrow">Mainnet list</p>
+        <h2>Hear when the chain launches.</h2>
+        <p>One note, for launch and for custody conversations. No coin is for sale.</p>
+      </div>
+      <form id="list-form">
+        <label for="email">Email</label>
+        <div class="row">
+          <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@company.com">
+          <button class="button" type="submit">Request a place</button>
+        </div>
+        <p class="form-status" id="form-status" role="status"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer reveal">
+    <div class="footer-brand">
+      <img src="public/brand/wordmark.png" alt="" width="1600" height="230">
+      <p>BTQ Technologies</p>
+    </div>
+    <div>
+      <p>Security · <a href="mailto:oscar@btq.com">oscar@btq.com</a> · <a href="mailto:barney@btq.com">barney@btq.com</a></p>
+      <p>
+        <a href="https://github.com/btq-ag/btq-core">GitHub</a>
+        <a href="https://explorer.bitcoinquantum.com">Testnet explorer</a>
+        <a href="https://docs.bitcoinquantum.com/mining/guide">Docs</a>
+        <a href="https://bitcoinquantum.com/faq">FAQ</a>
+      </p>
+      <p class="fine">Mainnet has not launched. Fixed seeds are empty. P2MR, Dilithium 2, and the chain parameters are the rules in btq-core. The 10 percent figure is the widely cited estimate of Bitcoin coins that can no longer be signed for.</p>
+    </div>
+  </footer>
+
+  <script src="site.js"></script>
+</body>
+</html>
