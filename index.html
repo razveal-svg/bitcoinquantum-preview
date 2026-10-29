@@ -44,7 +44,7 @@
         <h1>Two upgrades to Bitcoin, from block 1.</h1>
       </div>
       <div class="hero-side">
-        <p class="lead">Pay-to-Merkle-Root keeps the public key off the chain until a coin is spent. Dilithium 2, ML-DSA-44, is the signature on that spend. Mainnet applies both from the genesis block.</p>
+        <p class="lead">P2MR until the coin is spent. Dilithium 2 on that spend. Both from block 1.</p>
         <div class="actions">
           <a class="button" href="#upgrades"><span class="chev" aria-hidden="true"></span>The two upgrades</a>
           <a class="button ghost" href="#level">Why this level</a>
@@ -67,22 +67,22 @@
           <article class="aisle-beat">
             <p class="aisle-kicker">01 · Address</p>
             <h2>The key stays off the chain.</h2>
-            <p>Pay-to-Merkle-Root commits the address to a Merkle root. The public key is shown when the coin is spent, not when it is received.</p>
+            <p>The public key appears at the spend, not when the coin is received.</p>
           </article>
           <article class="aisle-beat">
             <p class="aisle-kicker">02 · Signature</p>
             <h2>The spend is Dilithium 2.</h2>
-            <p>ML-DSA-44, NIST category 2, the collision class of SHA-256. A signature is 2,420 bytes. A public key is 1,312. Mainnet requires it from the first block.</p>
+            <p>Category 2, the SHA-256 collision class. 2,420 bytes. From block 1.</p>
           </article>
           <article class="aisle-beat">
             <p class="aisle-kicker">03 · Critical mass</p>
             <h2>Our Satoshi can still sign.</h2>
-            <p>Bitcoin already carries a lost supply, widely put near 10 percent, and no one can move it onto a newer signature. The founder here is a company. Those coins can move.</p>
+            <p>A widely cited tenth of Bitcoin cannot move. A company can sign.</p>
           </article>
           <article class="aisle-beat">
             <p class="aisle-kicker">04 · What stayed</p>
             <h2>The machines stay on SHA-256.</h2>
-            <p>Existing ASICs still work. The chain is separate. Bitcoin does not move onto it, and there is nothing to buy ahead of launch.</p>
+            <p>ASICs stay. Bitcoin does not migrate.</p>
           </article>
         </div>
       </div>
@@ -95,14 +95,14 @@
           <p class="eyebrow">01 · The upgrades</p>
           <h2>P2MR, and Dilithium 2.</h2>
         </div>
-        <p>These are the changes that matter. The public key stays off the chain while a coin rests. The spend uses a NIST lattice signature, Dilithium 2, the parameter set also called ML-DSA-44.</p>
+        <p>The key stays off the chain. The spend is a lattice signature.</p>
       </div>
       <div class="change">
         <article class="to">
           <div>
             <p class="kicker">Address</p>
             <h3>P2MR</h3>
-            <p>BIP-360 Pay-to-Merkle-Root. The address commits to a Merkle root. The public key is revealed when the coin is spent. Taproot publishes that key when the coin is received.</p>
+            <p>The address commits to a root. The key is revealed at the spend.</p>
             <p class="spec">BIP-360 · script path · height 1</p>
           </div>
           <img src="public/brand/tech-hidden.svg" alt="" width="160" height="122">
@@ -111,7 +111,7 @@
           <div>
             <p class="kicker">Signature</p>
             <h3>Dilithium 2</h3>
-            <p>CRYSTALS-Dilithium, NIST FIPS 204, parameter set ML-DSA-44. A signature is 2,420 bytes. A public key is 1,312. This is the signature that replaces ECDSA on a mainnet spend.</p>
+            <p>ML-DSA-44. A 2,420-byte signature. A 1,312-byte key.</p>
             <p class="spec">ML-DSA-44 · NIST category 2 · height 1</p>
           </div>
           <img src="public/brand/tech-signatures.svg" alt="" width="160" height="122">
@@ -126,7 +126,7 @@
           <p class="eyebrow">02 · Why this level</p>
           <h2>Enough security for the chain that already exists.</h2>
         </div>
-        <p>Dilithium 2 is NIST security category 2, the class of a SHA-256 collision. Heavier parameters buy a margin this chain’s own proof of work does not have, and they spend the bytes the block was opened up to carry.</p>
+        <p>Category 2. The same class as a SHA-256 collision.</p>
       </div>
       <div class="exhibit">
         <figure class="exhibit-art" id="lattice">
@@ -135,15 +135,15 @@
         <dl class="rows">
           <div>
             <dt>SHA-256</dt>
-            <dd>Proof of work is still SHA-256. A signature above that category does not make the ledger harder to rewrite.</dd>
+            <dd>A heavier signature does not make the ledger harder to rewrite.</dd>
           </div>
           <div>
             <dt>The spend</dt>
-            <dd>A quantum computer needs the public key. P2MR shows that key at the moment of spend, so the signature covers the spend, not years of an exposed address.</dd>
+            <dd>The key appears at the spend. The signature covers that moment.</dd>
           </div>
           <div>
             <dt>The bytes</dt>
-            <dd>Dilithium 2 is already about 2,420 bytes, against about 71 for ECDSA. Dilithium 5, ML-DSA-87, is a larger signature for category 5. The 8 MB block and the one-minute target exist so Dilithium 2 fits.</dd>
+            <dd>2,420 bytes, against 71 for ECDSA. The 8 MB block carries Dilithium 2, not Dilithium 5.</dd>
           </div>
         </dl>
       </div>
@@ -156,18 +156,18 @@
           <p class="eyebrow">03 · Critical mass</p>
           <h2>Our Satoshi is alive.</h2>
         </div>
-        <p>A new signature only helps coins someone can still move. Bitcoin already carries a lost supply, widely put near 10 percent, and Satoshi’s coins are in it. No one can sign for that stash, so it cannot follow a newer scheme. The migration leaves the mass behind.</p>
+        <p>Near 10 percent of Bitcoin, widely cited, can no longer be signed for.</p>
       </div>
       <div class="change">
         <article>
           <p class="kicker">Bitcoin</p>
           <h3>A silent stash</h3>
-          <p>The founder coins have no living signer. When the network has to move coins onto the latest security, that supply stays where it is.</p>
+          <p>No living signer. That supply stays put.</p>
         </article>
         <article class="to">
           <p class="kicker">Bitcoin Quantum</p>
           <h3>A company that can sign</h3>
-          <p>The founder is a company. It is alive, it carries a fiduciary duty, and the shareholder base is on the public record. When the signature standard changes, those coins can move. The chain keeps a critical mass on the latest security.</p>
+          <p>Fiduciary duty. A public shareholder base. The coins can move.</p>
         </article>
       </div>
       <div class="dots" aria-hidden="true"></div>
@@ -180,7 +180,7 @@
           <p class="eyebrow">04 · What stayed Bitcoin</p>
           <h2>Same coins. Same machines.</h2>
         </div>
-        <p>Miners keep SHA-256. Holders keep a 21 million cap and a four-year halving. The chain is separate: bitcoin does not move onto it, and there is nothing to buy ahead of launch.</p>
+        <p>SHA-256. A separate chain. Nothing for sale ahead of launch.</p>
       </div>
       <div class="exhibit">
         <figure class="exhibit-art" id="stack">
@@ -204,42 +204,42 @@
           <p class="eyebrow">05 · Guides</p>
           <h2>The argument, in five pieces.</h2>
         </div>
-        <p>The signature, the block, and the address. Each one is a short note you can read on its own.</p>
+        <p>Five short notes.</p>
       </div>
       <ol class="guides">
         <li>
           <a href="https://bitcoinquantum.com/guides/quantum-secure-bitcoin/signature-migration">
             <span>01</span>
             <strong>From ECDSA to Dilithium</strong>
-            <em>What the signature change requires: opcodes, size, wallets, and running both schemes.</em>
+            <em>Opcodes, size, and wallets.</em>
           </a>
         </li>
         <li>
           <a href="https://bitcoinquantum.com/guides/quantum-secure-bitcoin/block-size-tradeoffs">
             <span>02</span>
             <strong>The 20× problem</strong>
-            <em>Why the signatures need a larger block, and what that does to the rest of the parameters.</em>
+            <em>Why the block grew.</em>
           </a>
         </li>
         <li>
           <a href="https://bitcoinquantum.com/guides/quantum-secure-bitcoin/taproot-quantum-vulnerability">
             <span>03</span>
             <strong>Why Taproot is quantum-vulnerable</strong>
-            <em>A quantum-resistant script inside a key path is not protection. P2MR removes the key path.</em>
+            <em>P2MR removes the key path.</em>
           </a>
         </li>
         <li>
           <a href="https://bitcoinquantum.com/guides/quantum-secure-bitcoin/address-formats">
             <span>04</span>
             <strong>Quantum-safe addresses</strong>
-            <em>The public key is 1,312 bytes. The address commits to a 32-byte Merkle root instead.</em>
+            <em>A 32-byte root, not a 1,312-byte key.</em>
           </a>
         </li>
         <li>
           <a href="https://bitcoinquantum.com/guides/quantum-secure-bitcoin/mining-and-bootstrapping">
             <span>05</span>
             <strong>Mining a quantum-resistant network</strong>
-            <em>SHA-256 is unchanged. Paying miners, and starting the chain, are the hard parts.</em>
+            <em>SHA-256 is unchanged.</em>
           </a>
         </li>
       </ol>
@@ -250,7 +250,7 @@
       <div>
         <p class="eyebrow">Mainnet list</p>
         <h2>Hear when the chain launches.</h2>
-        <p>One note, for launch and for custody conversations. No coin is for sale.</p>
+        <p>One note at launch. No coin is for sale.</p>
       </div>
       <form id="list-form">
         <label for="email">Email</label>
