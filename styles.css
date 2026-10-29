@@ -36,19 +36,54 @@ body {
   overflow: hidden;
 }
 
-.atmosphere-photo {
+.plate {
   position: absolute;
-  inset: -10%;
-  background: url("public/brand/orbit.jpg") center/cover no-repeat;
-  animation: drift 42s ease-in-out infinite alternate;
+  inset: -14% -6%;
+  background-position: right center;
+  background-size: 128% auto;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transform: scale(1.08);
+  will-change: opacity, transform;
+}
+
+.plate[data-scene="orbit"] {
+  background-image: url("public/brand/orbit.jpg");
+  background-position: center;
+  background-size: cover;
+  opacity: 1;
+}
+
+.plate[data-scene="ring"] {
+  background-image: url("public/brand/scene-ring.jpg");
+  background-position: 100% 42%;
+}
+
+.plate[data-scene="horizon"] {
+  background-image: url("public/brand/scene-horizon.jpg");
+  background-position: 100% 36%;
+}
+
+.plate[data-scene="nebula"] {
+  background-image: url("public/brand/scene-nebula.jpg");
+  background-position: 92% center;
+}
+
+.plate[data-scene="globe"] {
+  background-image: url("public/brand/scene-globe.jpg");
+  background-position: 100% center;
+}
+
+.plate[data-scene="coin"] {
+  background-image: url("public/brand/scene-coin.jpg");
+  background-position: 96% center;
 }
 
 .atmosphere-veil {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 74% 0%, rgba(34, 97, 246, 0.4), transparent 34%),
-    linear-gradient(180deg, rgba(5, 7, 12, 0.22) 0%, rgba(5, 7, 12, 0.62) 22%, rgba(5, 7, 12, 0.9) 48%, rgba(5, 7, 12, 0.94) 100%);
+    linear-gradient(90deg, rgba(5, 7, 12, 0.9) 0%, rgba(5, 7, 12, 0.74) 24%, rgba(5, 7, 12, 0.28) 46%, rgba(5, 7, 12, 0.08) 68%, rgba(5, 7, 12, 0.2) 100%);
 }
 
 .nav,
@@ -56,11 +91,6 @@ main,
 .footer {
   position: relative;
   z-index: 1;
-}
-
-@keyframes drift {
-  from { transform: scale(1.06) translate3d(0, 0, 0); }
-  to { transform: scale(1.16) translate3d(-3%, -2%, 0); }
 }
 
 @keyframes rise {
@@ -164,11 +194,12 @@ a { color: inherit; }
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(18rem, 0.9fr);
-  gap: 3.25rem 3.5rem;
+  gap: 1.75rem 3rem;
   align-items: center;
+  align-content: center;
   width: min(var(--measure), calc(100% - 3rem));
   margin: 0 auto;
-  padding: 4.25rem 0 2.5rem;
+  padding: 2rem 0 1.5rem;
   min-height: calc(100svh - var(--nav));
 }
 
@@ -283,7 +314,7 @@ h1 {
 .section {
   width: min(var(--measure), calc(100% - 3rem));
   margin: 0 auto;
-  padding: 5.5rem 0 0;
+  padding: 2.35rem 0 0;
 }
 
 .section-head { max-width: 44rem; }
@@ -303,7 +334,7 @@ h2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1px;
-  margin-top: 2.5rem;
+  margin-top: 1.35rem;
   background: var(--line);
   border: 1px solid var(--line);
 }
@@ -358,7 +389,7 @@ h2 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem 2rem;
-  margin: 2.5rem 0 0;
+  margin: 1.35rem 0 0;
 }
 
 .facts div {
@@ -468,7 +499,7 @@ h2 {
   gap: 2rem;
   align-items: end;
   width: min(var(--measure), calc(100% - 3rem));
-  margin: 5rem auto 0;
+  margin: 2.35rem auto 0;
   padding: 2.5rem;
   background:
     linear-gradient(105deg, rgba(5, 7, 12, 0.9) 0%, rgba(5, 7, 12, 0.78) 46%, rgba(0, 20, 40, 0.55) 100%),
@@ -592,6 +623,10 @@ h2 {
 
   .hero { min-height: 0; padding-top: 2.5rem; }
 
+  .atmosphere-veil {
+    background: linear-gradient(180deg, rgba(5, 7, 12, 0.62) 0%, rgba(5, 7, 12, 0.74) 100%);
+  }
+
   h1 { max-width: none; }
 
   .status { grid-column: auto; }
@@ -609,7 +644,10 @@ h2 {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 
-  .atmosphere-photo,
+  .plate { transform: none; }
+  .plate:not([data-scene="orbit"]) { opacity: 0; }
+  .plate[data-scene="orbit"] { opacity: 1; }
+
   .hero-stage,
   .hero-copy > * {
     animation: none;
