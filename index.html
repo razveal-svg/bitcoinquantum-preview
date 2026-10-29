@@ -99,20 +99,25 @@
         </div>
         <p>Dilithium 2 is NIST security category 2, the class of a SHA-256 collision. Heavier parameters buy a margin this chain’s own proof of work does not have, and they spend the bytes the block was opened up to carry.</p>
       </div>
-      <dl class="facts">
-        <div>
-          <dt>SHA-256</dt>
-          <dd>Proof of work is still SHA-256. A signature above that category does not make the ledger harder to rewrite.</dd>
-        </div>
-        <div>
-          <dt>The spend</dt>
-          <dd>A quantum computer needs the public key. P2MR shows that key at the moment of spend, so the signature covers the spend, not years of an exposed address.</dd>
-        </div>
-        <div>
-          <dt>The bytes</dt>
-          <dd>Dilithium 2 is already about 2,420 bytes, against about 71 for ECDSA. Dilithium 5, ML-DSA-87, is a larger signature for category 5. The 8 MB block and the one-minute target exist so Dilithium 2 fits.</dd>
-        </div>
-      </dl>
+      <div class="exhibit">
+        <figure class="exhibit-art" id="lattice">
+          <canvas data-draw="lattice" role="img" aria-label="A crystal lattice of points. Dilithium 2, ML-DSA-44, is a lattice signature."></canvas>
+        </figure>
+        <dl class="rows">
+          <div>
+            <dt>SHA-256</dt>
+            <dd>Proof of work is still SHA-256. A signature above that category does not make the ledger harder to rewrite.</dd>
+          </div>
+          <div>
+            <dt>The spend</dt>
+            <dd>A quantum computer needs the public key. P2MR shows that key at the moment of spend, so the signature covers the spend, not years of an exposed address.</dd>
+          </div>
+          <div>
+            <dt>The bytes</dt>
+            <dd>Dilithium 2 is already about 2,420 bytes, against about 71 for ECDSA. Dilithium 5, ML-DSA-87, is a larger signature for category 5. The 8 MB block and the one-minute target exist so Dilithium 2 fits.</dd>
+          </div>
+        </dl>
+      </div>
     </section>
 
     <section class="section reveal" id="mass" data-scene="nebula">
@@ -148,14 +153,19 @@
         </div>
         <p>Miners keep SHA-256. Holders keep a 21 million cap and a four-year halving. The chain is separate: bitcoin does not move onto it, and there is nothing to buy ahead of launch.</p>
       </div>
-      <dl class="sheet">
-        <div><dt>21M</dt><dd>Supply cap, unchanged.</dd></div>
-        <div><dt>SHA-256</dt><dd>Existing ASICs still work.</dd></div>
-        <div><dt>1 min</dt><dd>Target time between blocks.</dd></div>
-        <div><dt>8MB</dt><dd>Block limit, sized for the signatures.</dd></div>
-        <div><dt>5 BTQ</dt><dd>Subsidy. Halving every 2,100,000 blocks.</dd></div>
-        <div><dt>UTXO</dt><dd>Script and the halving curve stay.</dd></div>
-      </dl>
+      <div class="exhibit">
+        <figure class="exhibit-art" id="stack">
+          <canvas data-draw="stack" role="img" aria-label="Four layers of the chain, from the bottom: SHA-256, the UTXO, P2MR, and Dilithium 2."></canvas>
+        </figure>
+        <dl class="sheet">
+          <div><dt>21M</dt><dd>Supply cap, unchanged.</dd></div>
+          <div><dt>SHA-256</dt><dd>Existing ASICs still work.</dd></div>
+          <div><dt>1 min</dt><dd>Target time between blocks.</dd></div>
+          <div><dt>8MB</dt><dd>Block limit, sized for the signatures.</dd></div>
+          <div><dt>5 BTQ</dt><dd>Subsidy. Halving every 2,100,000 blocks.</dd></div>
+          <div><dt>UTXO</dt><dd>Script and the halving curve stay.</dd></div>
+        </dl>
+      </div>
     </section>
 
     <section class="section reveal" id="guides" data-scene="coin">
@@ -242,5 +252,6 @@
   </footer>
 
   <script src="site.js"></script>
+  <script src="figures.js"></script>
 </body>
 </html>
