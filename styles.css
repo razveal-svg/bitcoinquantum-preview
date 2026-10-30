@@ -518,7 +518,7 @@ h1 {
   padding: 1.35rem 0 0;
 }
 
-.chain { height: 260vh; }
+.chain { height: 190vh; }
 
 .chain-pin {
   position: sticky;
@@ -537,7 +537,8 @@ h1 {
 
 .chain-art {
   margin: 0;
-  aspect-ratio: 16 / 7;
+  aspect-ratio: 16 / 6.2;
+  max-height: calc(100svh - var(--nav) - 16rem);
 }
 
 .chain-art canvas {
@@ -918,7 +919,7 @@ h2 {
   }
 
   .exhibit-art { aspect-ratio: 5 / 4; max-height: 22rem; }
-  .chain { height: 220vh; }
+  .chain { height: 170vh; }
   .chain-art { aspect-ratio: 16 / 9; }
   .chain-steps { grid-template-columns: 1fr 1fr; }
 

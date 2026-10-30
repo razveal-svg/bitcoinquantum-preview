@@ -400,33 +400,52 @@
   }
 
   function chainValue() {
-    if (reduce || !chain) return fieldStep;
+    if (!chain) return fieldStep;
     const travel = chain.offsetHeight - window.innerHeight;
     if (travel <= 0) return fieldStep;
     const scrolled = -chain.getBoundingClientRect().top;
     const p = Math.min(1, Math.max(0, scrolled / travel));
-    const scaled = p * 4;
-    const index = Math.min(3, Math.floor(scaled));
-    if (index >= 3) return 3;
-    const local = scaled - index;
-    if (local < 0.62) return index;
-    const glide = (local - 0.62) / 0.38;
-    const eased = glide * glide * (3 - 2 * glide);
-    return index + eased;
+    return p * 3;
   }
+
+  function goTo(step) {
+    const next = Math.min(3, Math.max(0, step));
+    showField(next);
+    const travel = chain ? chain.offsetHeight - window.innerHeight : 0;
+    if (!chain || travel <= 0) {
+      fieldShown = next;
+      kick();
+      return;
+    }
+    const p = next >= 3 ? 1 : (next + 0.12) / 3;
+    const top = window.scrollY + chain.getBoundingClientRect().top + p * travel;
+    const root = document.documentElement;
+    const previous = root.style.scrollBehavior;
+    root.style.scrollBehavior = "auto";
+    window.scrollTo(0, top);
+    root.style.scrollBehavior = previous;
+    kick();
+  }
+
+  let wheelLock = 0;
+  chain.addEventListener("wheel", (event) => {
+    const rect = chain.getBoundingClientRect();
+    const onIt = rect.top < window.innerHeight * 0.45 && rect.bottom > window.innerHeight * 0.55;
+    if (!onIt) return;
+    const delta = event.deltaY;
+    if (!delta) return;
+    const down = delta > 0;
+    if ((down && fieldStep >= 3) || (!down && fieldStep <= 0)) return;
+    event.preventDefault();
+    const now = performance.now();
+    if (now < wheelLock) return;
+    wheelLock = now + 460;
+    goTo(fieldStep + (down ? 1 : -1));
+  }, { passive: false });
 
   fieldButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
-      const step = Number(btn.dataset.chain);
-      if (reduce || !chain) {
-        showField(step);
-        fieldShown = step;
-        kick();
-        return;
-      }
-      const travel = chain.offsetHeight - window.innerHeight;
-      const top = chain.getBoundingClientRect().top + window.scrollY + ((step + 0.28) / 4) * travel;
-      window.scrollTo({ top, behavior: "smooth" });
+      goTo(Number(btn.dataset.chain));
     });
   });
 
@@ -439,7 +458,7 @@
     if (reduce) fieldShown = fieldStep;
     else {
       const next = chainValue();
-      const step = Math.min(3, Math.max(0, Math.round(next)));
+      const step = Math.min(3, Math.floor(next + 0.001));
       if (step !== fieldStep) showField(step);
       fieldShown = next;
     }
