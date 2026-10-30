@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=scroll2">
+  <link rel="stylesheet" href="styles.css?v=footer">
 </head>
 <body>
   <div class="atmosphere" aria-hidden="true">
@@ -308,17 +308,39 @@
     <div class="footer-brand">
       <img src="public/brand/wordmark.png" alt="" width="1600" height="230">
       <p>BTQ Technologies</p>
+      <p class="footer-security">Security · <a href="mailto:oscar@btq.com">oscar@btq.com</a> · <a href="mailto:barney@btq.com">barney@btq.com</a></p>
     </div>
-    <div>
-      <p>Security · <a href="mailto:oscar@btq.com">oscar@btq.com</a> · <a href="mailto:barney@btq.com">barney@btq.com</a></p>
-      <p>
-        <a href="https://github.com/btq-ag/btq-core">GitHub</a>
-        <a href="https://explorer.bitcoinquantum.com">Testnet explorer</a>
-        <a href="https://docs.bitcoinquantum.com/mining/guide">Docs</a>
-        <a href="https://bitcoinquantum.com/faq">FAQ</a>
-      </p>
-      <p class="fine">Mainnet has not launched. Fixed seeds are empty. P2MR, Dilithium 2, and the chain parameters are the rules in btq-core. The 10 percent figure is the widely cited estimate of Bitcoin coins that can no longer be signed for.</p>
+    <div class="footer-cols">
+      <nav aria-label="Learn">
+        <p>Learn</p>
+        <ul>
+          <li><span class="soon">Whitepaper · coming soon</span></li>
+          <li><a href="https://bitcoinquantum.com/transaction-types">Transaction types</a></li>
+          <li><a href="https://bitcoinquantum.com/protocol">Protocol</a></li>
+          <li><a href="https://bitcoinquantum.com/protocol#cryptography">Cryptography</a></li>
+          <li><a href="https://bitcoinquantum.com/faq">FAQ</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Network">
+        <p>Network</p>
+        <ul>
+          <li><a href="https://bitcoinquantum.com/#roadmap">Roadmap</a></li>
+          <li><a href="https://bitcoinquantum.com/testnet">Testnet</a></li>
+          <li><a href="https://explorer.bitcoinquantum.com">Block explorer</a></li>
+          <li><a href="https://docs.bitcoinquantum.com/mining/guide">Run a node</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Community">
+        <p>Community</p>
+        <ul>
+          <li><a href="https://github.com/btq-ag/btq-core">GitHub</a></li>
+          <li><a href="https://discord.com/invite/bBYD8rBtHm">Discord</a></li>
+          <li><a href="https://t.me/+bE6I4gqX4Vo1ODJh">Telegram</a></li>
+          <li><a href="https://x.com/btc_quantum">X / Twitter</a></li>
+        </ul>
+      </nav>
     </div>
+    <p class="fine">Mainnet has not launched. Fixed seeds are empty. P2MR, Dilithium 2, and the chain parameters are the rules in btq-core. The 10 percent figure is the widely cited estimate of Bitcoin coins that can no longer be signed for.</p>
   </footer>
 
   <script src="site.js"></script>
