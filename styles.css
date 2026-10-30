@@ -518,6 +518,13 @@ h1 {
   padding: 1.35rem 0 0;
 }
 
+.chain { height: 260vh; }
+
+.chain-pin {
+  position: sticky;
+  top: calc(var(--nav) + 0.4rem);
+}
+
 .chain-stage {
   margin-top: 0.85rem;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -558,7 +565,11 @@ h1 {
   font: inherit;
   text-align: left;
   cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.25s ease;
 }
+
+.chain-steps button.is-on { opacity: 1; }
 
 .chain-steps button.is-on::before {
   content: "";
@@ -907,7 +918,8 @@ h2 {
   }
 
   .exhibit-art { aspect-ratio: 5 / 4; max-height: 22rem; }
-  .chain-art { aspect-ratio: 4 / 3; }
+  .chain { height: 220vh; }
+  .chain-art { aspect-ratio: 16 / 9; }
   .chain-steps { grid-template-columns: 1fr 1fr; }
 
   .band .change article,
@@ -1076,6 +1088,9 @@ h2 {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+
+  .chain { height: auto; }
+  .chain-pin { position: static; }
 
   .plate { transform: none; }
   .plate:not([data-scene="orbit"]) { opacity: 0; }

@@ -215,7 +215,6 @@
   const fieldRows = 6;
   let fieldStep = 0;
   let fieldShown = 0;
-  let fieldMark = 0;
 
   function fieldKind(x, z) {
     if ((x === 1 || x === 3) && z === 2) return { levels: 4, kind: "wire", zone: 0 };
@@ -234,7 +233,6 @@
   function drawField(canvas) {
     const { ctx, width, height } = sizeOf(canvas);
     ctx.clearRect(0, 0, width, height);
-    fieldShown += (fieldStep - fieldShown) * (reduce ? 1 : 0.14);
 
     for (let i = 0; i < 36; i++) {
       const sx = ((i * 97) % 997) / 997 * width;
@@ -390,24 +388,47 @@
 
   const painters = { lattice: drawLattice, stack: drawStack, field: drawField };
   const fieldButtons = [...document.querySelectorAll("[data-chain]")];
+  const chain = document.getElementById("chain");
 
-  function showField(step, pin) {
+  function showField(step) {
     fieldStep = step;
     fieldButtons.forEach((btn, index) => {
       const on = index === step;
       btn.classList.toggle("is-on", on);
       btn.setAttribute("aria-selected", on ? "true" : "false");
     });
-    if (pin) fieldMark = performance.now();
+  }
+
+  function chainValue() {
+    if (reduce || !chain) return fieldStep;
+    const travel = chain.offsetHeight - window.innerHeight;
+    if (travel <= 0) return fieldStep;
+    const scrolled = -chain.getBoundingClientRect().top;
+    const p = Math.min(1, Math.max(0, scrolled / travel));
+    const scaled = p * 4;
+    const index = Math.min(3, Math.floor(scaled));
+    if (index >= 3) return 3;
+    const local = scaled - index;
+    if (local < 0.62) return index;
+    const glide = (local - 0.62) / 0.38;
+    const eased = glide * glide * (3 - 2 * glide);
+    return index + eased;
   }
 
   fieldButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
-      showField(Number(btn.dataset.chain), true);
-      kick();
+      const step = Number(btn.dataset.chain);
+      if (reduce || !chain) {
+        showField(step);
+        fieldShown = step;
+        kick();
+        return;
+      }
+      const travel = chain.offsetHeight - window.innerHeight;
+      const top = chain.getBoundingClientRect().top + window.scrollY + ((step + 0.28) / 4) * travel;
+      window.scrollTo({ top, behavior: "smooth" });
     });
   });
-  fieldMark = performance.now();
 
   let start = 0;
   let running = false;
@@ -415,9 +436,12 @@
   function frame(now) {
     if (!start) start = now;
     const t = (now - start) / 1000;
-    if (!reduce && fieldButtons.length && now - fieldMark > 6500) {
-      showField((fieldStep + 1) % 4, false);
-      fieldMark = now;
+    if (reduce) fieldShown = fieldStep;
+    else {
+      const next = chainValue();
+      const step = Math.min(3, Math.max(0, Math.round(next)));
+      if (step !== fieldStep) showField(step);
+      fieldShown = next;
     }
     let visible = false;
     for (const canvas of canvases) {
