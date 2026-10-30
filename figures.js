@@ -211,13 +211,214 @@
     ctx.stroke();
   }
 
-  const painters = { lattice: drawLattice, stack: drawStack };
+  const fieldCols = 20;
+  const fieldRows = 6;
+  let fieldStep = 0;
+  let fieldShown = 0;
+  let fieldMark = 0;
+
+  function fieldKind(x, z) {
+    if ((x === 1 || x === 3) && z === 2) return { levels: 4, kind: "wire", zone: 0 };
+    if (x >= 6 && x <= 8 && z >= 1 && z <= 3) {
+      const levels = x === 7 && z === 2 ? 3 : x === 7 || z === 2 ? 2 : 1;
+      return { levels, kind: "dash", zone: 1 };
+    }
+    if (x >= 11 && x <= 17 && z <= 4) {
+      const ridge = [1, 2, 3, 4, 4, 3, 2][x - 11];
+      const levels = ridge - Math.abs(z - 2);
+      if (levels > 0) return { levels, kind: "solid", zone: x >= 14 ? 3 : 2 };
+    }
+    return { levels: 0, kind: "floor", zone: x < 5 ? 0 : x < 10 ? 1 : x < 14 ? 2 : 3 };
+  }
+
+  function drawField(canvas) {
+    const { ctx, width, height } = sizeOf(canvas);
+    ctx.clearRect(0, 0, width, height);
+    fieldShown += (fieldStep - fieldShown) * (reduce ? 1 : 0.14);
+
+    for (let i = 0; i < 36; i++) {
+      const sx = ((i * 97) % 997) / 997 * width;
+      const sy = ((i * 53) % 991) / 991 * height * 0.62;
+      ctx.fillStyle = `rgba(255,255,255,${0.1 + (i % 4) * 0.04})`;
+      ctx.fillRect(sx, sy, 1.1, 1.1);
+    }
+
+    const s = Math.min(width * 0.9 / ((fieldCols + fieldRows) * 0.92), height * 0.8 / 13.5);
+    const originX = width * 0.5 - (fieldCols / 2 - fieldRows / 2) * s;
+    const originY = height * 0.8 - (fieldCols + fieldRows - 4) * s * 0.26;
+    const iso = (x, y, z) => [
+      originX + (x - z) * s,
+      originY + (x + z) * s * 0.26 - y * s * 0.52,
+    ];
+
+    const cells = [];
+    for (let z = 0; z < fieldRows; z++) {
+      for (let x = 0; x < fieldCols; x++) cells.push({ x, z, ...fieldKind(x, z) });
+    }
+    cells.sort((a, b) => a.x + a.z - (b.x + b.z) || a.levels - b.levels);
+
+    function poly(pts) {
+      ctx.beginPath();
+      pts.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1])));
+      ctx.closePath();
+    }
+
+    function cube(x, z, y0, y1, kind, near) {
+      const A = iso(x, y1, z);
+      const B = iso(x + 1, y1, z);
+      const C = iso(x + 1, y1, z + 1);
+      const D = iso(x, y1, z + 1);
+      const F = iso(x + 1, y0, z);
+      const G = iso(x + 1, y0, z + 1);
+      const H = iso(x, y0, z + 1);
+      const faces = [[D, C, G, H], [B, C, G, F], [A, B, C, D]];
+      const filled = kind === "floor" || kind === "solid";
+      const lit = kind === "solid" && near > 0.55;
+      const fills = kind === "solid"
+        ? [
+            lit ? "rgba(14, 36, 72, 0.96)" : "rgba(12, 18, 30, 0.96)",
+            lit ? "rgba(22, 52, 102, 0.96)" : "rgba(18, 28, 46, 0.96)",
+            lit ? "rgba(86, 150, 220, 0.72)" : "rgba(42, 58, 82, 0.96)",
+          ]
+        : ["rgba(7, 12, 20, 0.96)", "rgba(11, 16, 26, 0.96)", "rgba(16, 24, 36, 0.96)"];
+      const stroke = kind === "wire"
+        ? `rgba(236, 242, 252, ${0.72 + near * 0.28})`
+        : kind === "dash"
+          ? `rgba(220, 230, 244, ${0.55 + near * 0.35})`
+          : kind === "solid"
+            ? `rgba(214, 226, 240, ${0.42 + near * 0.35})`
+            : "rgba(150, 168, 190, 0.28)";
+      ctx.lineWidth = kind === "wire" ? 1.2 : 1;
+      ctx.setLineDash(kind === "dash" ? [3, 2.4] : []);
+      faces.forEach((pts, face) => {
+        poly(pts);
+        if (filled) {
+          ctx.fillStyle = fills[face];
+          ctx.fill();
+        }
+        ctx.strokeStyle = stroke;
+        ctx.stroke();
+      });
+      ctx.setLineDash([]);
+    }
+
+    for (const cell of cells) {
+      const near = 1 - Math.min(1, Math.abs(fieldShown - cell.zone) / 1.4);
+      const fade = Math.min(1, (cell.x + 0.4) / 1.3, (fieldCols - cell.x) / 1.5);
+      ctx.globalAlpha = 0.45 + 0.55 * fade;
+      cube(cell.x, cell.z, 0, 0.72, "floor", near);
+      for (let level = 0; level < cell.levels; level++) {
+        cube(cell.x, cell.z, 0.72 + level * 0.92, 0.72 + (level + 1) * 0.92, cell.kind, near);
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    const peak = iso(15.2, 0.72 + 4 * 0.92, 2.5);
+    function planeAt(u, v) {
+      const w = s * 5.2;
+      const h = s * 2.5;
+      return [
+        peak[0] - w * 0.2 + u * w + (v - 0.5) * s * 0.45,
+        peak[1] - s * 1.15 - u * h * 0.85 + v * h * 0.28,
+      ];
+    }
+    const planeNear = 1 - Math.min(1, Math.abs(fieldShown - 3) / 1.15);
+    ctx.globalAlpha = 0.55 + planeNear * 0.45;
+    poly([planeAt(0, 0), planeAt(1, 0), planeAt(1, 1), planeAt(0, 1)]);
+    ctx.fillStyle = "rgba(34, 97, 246, 0.18)";
+    ctx.fill();
+    ctx.strokeStyle = `rgba(186, 216, 255, ${0.55 + planeNear * 0.4})`;
+    ctx.lineWidth = 1.1;
+    ctx.stroke();
+    ctx.beginPath();
+    for (let i = 1; i < 4; i++) {
+      const a = planeAt(i / 4, 0);
+      const b = planeAt(i / 4, 1);
+      ctx.moveTo(a[0], a[1]);
+      ctx.lineTo(b[0], b[1]);
+      const c = planeAt(0, i / 4);
+      const d = planeAt(1, i / 4);
+      ctx.moveTo(c[0], c[1]);
+      ctx.lineTo(d[0], d[1]);
+    }
+    ctx.stroke();
+    ctx.globalAlpha = 1;
+
+    const marks = [
+      iso(2, 0.72 + 4 * 0.92 + 0.45, 2.5),
+      iso(7.5, 0.72 + 3 * 0.92 + 0.35, 2),
+      iso(13.2, 0.72 + 3 * 0.92 + 0.25, 2.2),
+      planeAt(0.55, 0.4),
+    ];
+    const names = ["SHA-256", "P2MR", "DILITHIUM", "BLOCK 1"];
+    const i0 = Math.max(0, Math.min(3, Math.floor(fieldShown)));
+    const glide = fieldShown - i0;
+    const i1 = Math.min(3, i0 + 1);
+    const orb = [
+      marks[i0][0] + (marks[i1][0] - marks[i0][0]) * glide,
+      marks[i0][1] + (marks[i1][1] - marks[i0][1]) * glide,
+    ];
+
+    names.forEach((name, n) => {
+      const on = 1 - Math.min(1, Math.abs(fieldShown - n));
+      if (on < 0.08) return;
+      const spot = n === 3 ? planeAt(0.82, 0.02) : [marks[n][0], marks[n][1] - s * 0.55];
+      ctx.globalAlpha = on;
+      ctx.font = "500 11px 'Geist Mono', ui-monospace, monospace";
+      ctx.textAlign = n === 3 ? "left" : "center";
+      ctx.textBaseline = "bottom";
+      ctx.fillStyle = "#f4f7fb";
+      ctx.fillText(name, spot[0], spot[1]);
+      ctx.globalAlpha = 1;
+    });
+
+    const beam = ctx.createLinearGradient(orb[0], orb[1], orb[0], orb[1] + s * 1.8);
+    beam.addColorStop(0, "rgba(186, 220, 255, 0.8)");
+    beam.addColorStop(1, "transparent");
+    ctx.strokeStyle = beam;
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(orb[0], orb[1]);
+    ctx.lineTo(orb[0], orb[1] + s * 1.8);
+    ctx.stroke();
+    glow(ctx, orb[0], orb[1], 18 + planeNear * 10, sky, 0.95);
+    ctx.fillStyle = "#ffffff";
+    ctx.beginPath();
+    ctx.arc(orb[0], orb[1], 4, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  const painters = { lattice: drawLattice, stack: drawStack, field: drawField };
+  const fieldButtons = [...document.querySelectorAll("[data-chain]")];
+
+  function showField(step, pin) {
+    fieldStep = step;
+    fieldButtons.forEach((btn, index) => {
+      const on = index === step;
+      btn.classList.toggle("is-on", on);
+      btn.setAttribute("aria-selected", on ? "true" : "false");
+    });
+    if (pin) fieldMark = performance.now();
+  }
+
+  fieldButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      showField(Number(btn.dataset.chain), true);
+      kick();
+    });
+  });
+  fieldMark = performance.now();
+
   let start = 0;
   let running = false;
 
   function frame(now) {
     if (!start) start = now;
     const t = (now - start) / 1000;
+    if (!reduce && fieldButtons.length && now - fieldMark > 6500) {
+      showField((fieldStep + 1) % 4, false);
+      fieldMark = now;
+    }
     let visible = false;
     for (const canvas of canvases) {
       const rect = canvas.getBoundingClientRect();

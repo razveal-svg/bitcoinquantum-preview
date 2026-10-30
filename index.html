@@ -89,6 +89,44 @@
       </div>
     </section>
 
+    <section class="section reveal" id="chain">
+      <div class="rule" aria-hidden="true"><span></span></div>
+      <div class="split">
+        <div>
+          <p class="eyebrow">The chain</p>
+          <h2>Assembled from block 1.</h2>
+        </div>
+        <p>A floor, a plan, a signature, and the rule that starts the chain.</p>
+      </div>
+      <div class="chain-stage">
+        <figure class="chain-art" id="chain-art">
+          <canvas data-draw="field" role="img" aria-label="An isometric field of blocks. SHA-256 is the floor, P2MR is the plan, Dilithium 2 fills the blocks, and the rule sits on top from block 1."></canvas>
+        </figure>
+      </div>
+      <div class="chain-steps" role="tablist" aria-label="Parts of the chain">
+        <button type="button" class="is-on" role="tab" aria-selected="true" aria-controls="chain-art" data-chain="0">
+          <span class="chain-num">01</span>
+          <span class="chain-name">SHA-256</span>
+          <span class="chain-body">The floor stays. Existing machines still hash.</span>
+        </button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="chain-art" data-chain="1">
+          <span class="chain-num">02</span>
+          <span class="chain-name">P2MR</span>
+          <span class="chain-body">Drawn before the key. The key waits for the spend.</span>
+        </button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="chain-art" data-chain="2">
+          <span class="chain-num">03</span>
+          <span class="chain-name">Dilithium 2</span>
+          <span class="chain-body">The blocks fill. A 2,420-byte lattice signature.</span>
+        </button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="chain-art" data-chain="3">
+          <span class="chain-num">04</span>
+          <span class="chain-name">Block 1</span>
+          <span class="chain-body">Both rules, from the first block. Not live yet.</span>
+        </button>
+      </div>
+    </section>
+
     <section class="section band reveal" id="upgrades" data-scene="ring">
       <div class="rule" aria-hidden="true"><span></span></div>
       <div class="split">

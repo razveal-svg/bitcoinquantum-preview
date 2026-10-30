@@ -518,6 +518,85 @@ h1 {
   padding: 1.35rem 0 0;
 }
 
+.chain-stage {
+  margin-top: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.15rem;
+  background:
+    radial-gradient(ellipse at 74% 62%, rgba(34, 97, 246, 0.28), transparent 46%),
+    linear-gradient(180deg, #0a1018 0%, #05070c 100%);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+}
+
+.chain-art {
+  margin: 0;
+  aspect-ratio: 16 / 7;
+}
+
+.chain-art canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.chain-steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.8rem 1.4rem;
+  margin-top: 0.85rem;
+}
+
+.chain-steps button {
+  appearance: none;
+  position: relative;
+  margin: 0;
+  padding: 0.7rem 0 0;
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.chain-steps button.is-on::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -1px;
+  height: 2px;
+  background: #35a4ea;
+}
+
+.chain-steps button:focus-visible {
+  outline: 2px solid #35a4ea;
+  outline-offset: 3px;
+}
+
+.chain-num {
+  display: block;
+  color: var(--sky);
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+}
+
+.chain-name {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 1.02rem;
+}
+
+.chain-body {
+  display: block;
+  margin-top: 0.28rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
 .section-head { max-width: 44rem; }
 
 h2 {
@@ -819,6 +898,7 @@ h2 {
   .sheet,
   .rows div,
   .exhibit,
+  .chain-steps,
   .steps,
   .status,
   .capture,
@@ -827,6 +907,8 @@ h2 {
   }
 
   .exhibit-art { aspect-ratio: 5 / 4; max-height: 22rem; }
+  .chain-art { aspect-ratio: 4 / 3; }
+  .chain-steps { grid-template-columns: 1fr 1fr; }
 
   .band .change article,
   .band .change .to { grid-template-columns: 1fr; }
